@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ItemsRoutingModule } from './items-routing.module';
 import { ItemsListComponent } from './pages/items-list/items-list.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ItemsListComponent } from './pages/items-list/items-list.component';
   ],
   imports: [
     CommonModule,
-    ItemsRoutingModule
+    ItemsRoutingModule,
+    TranslateModule
   ]
 })
 export class ItemsModule { }

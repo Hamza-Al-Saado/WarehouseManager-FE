@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => 
-      import('./features/items/items.module').then(m => m.ItemsModule)
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'items',
+        loadChildren: () =>
+          import('./features/items/items.module').then(m => m.ItemsModule)
+      }
+  ]
   }
 ];
 

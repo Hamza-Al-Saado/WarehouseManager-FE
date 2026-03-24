@@ -1,0 +1,38 @@
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar__header">
+      <h3>النظام</h3>
+    </div>
+
+    <nav class="sidebar__menu">
+      <a routerLink="/items" routerLinkActive="active">المواد</a>
+      <a>التصنيفات</a>
+      <a>الأقسام</a>
+      <a>المستخدمين</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="navbar__title">
+        نظام إدارة المستودع
+      </div>
+
+      <div class="navbar__actions">
+        <button class="btn-primary" (click)="ui.toggleTheme()">🌙</button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

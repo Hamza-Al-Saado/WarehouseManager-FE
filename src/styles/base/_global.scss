@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.content {
+  padding: var(--space-5);
+  flex: 1;
+}
