@@ -1,12 +1,14 @@
-<h2>العناصر</h2>
+<div class="page-header">
+  <h2>العناصر</h2>
+</div>
 
 <div *ngIf="loading">تحميل...</div>
 
-<table *ngIf="!loading">
+<table class="table" *ngIf="!loading">
   <thead>
     <tr>
       <th>الاسم</th>
-      <th>الفئة</th>
+      <th>التصنيف</th>
       <th>القسم</th>
       <th>الكمية</th>
     </tr>

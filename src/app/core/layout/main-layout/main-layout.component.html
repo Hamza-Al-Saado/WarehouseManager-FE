@@ -1,9 +1,9 @@
 <div class="app-layout">
 
   <!-- Sidebar -->
-  <aside class="sidebar">
+  <aside class="sidebar" [class.open]="isSidebarOpen">
     <div class="sidebar__header">
-      <h3>النظام</h3>
+      <h3>مستودع كتيبة الإشارة</h3>
     </div>
 
     <nav class="sidebar__menu">
@@ -14,13 +14,25 @@
     </nav>
   </aside>
 
+  <!-- Overlay (mobile) -->
+  <div 
+    class="overlay" 
+    *ngIf="isSidebarOpen" 
+    (click)="closeSidebar()">
+  </div>
+
   <!-- Main -->
   <div class="main">
 
     <!-- Navbar -->
     <header class="navbar">
+    <button class="menu-btn" (click)="toggleSidebar()">
+        ☰
+      </button>
+
       <div class="navbar__title">
-        نظام إدارة المستودع
+        <img class="eagle-img" src="assets/images/Syrian-Eagle.svg" alt="Logo">
+        فرع الاتصالات وتكنولوجيا المعلومات
       </div>
 
       <div class="navbar__actions">
@@ -30,7 +42,9 @@
 
     <!-- Content -->
     <main class="content">
-      <router-outlet></router-outlet>
+      <div class="page">
+        <router-outlet></router-outlet>
+      </div>
     </main>
 
   </div>
