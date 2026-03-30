@@ -1,0 +1,52 @@
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.open]="isSidebarOpen">
+    <div class="sidebar__header">
+      <h3>مستودع كتيبة الإشارة</h3>
+    </div>
+
+    <nav class="sidebar__menu">
+      <a routerLink="/items" routerLinkActive="active">المواد</a>
+      <a>التصنيفات</a>
+      <a>الأقسام</a>
+      <a>المستخدمين</a>
+    </nav>
+  </aside>
+
+  <!-- Overlay (mobile) -->
+  <div 
+    class="overlay" 
+    *ngIf="isSidebarOpen" 
+    (click)="closeSidebar()">
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Navbar -->
+    <header class="navbar">
+    <button class="menu-btn" (click)="toggleSidebar()">
+        ☰
+      </button>
+
+      <div class="navbar__title">
+        <img class="eagle-img" src="assets/images/Syrian-Eagle.svg" alt="Logo">
+        فرع الاتصالات وتكنولوجيا المعلومات
+      </div>
+
+      <div class="navbar__actions">
+        <button class="btn-primary" (click)="ui.toggleTheme()">🌙</button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+      <div class="page">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+
+  </div>
+
+</div>

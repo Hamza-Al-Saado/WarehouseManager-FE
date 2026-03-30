@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/abstracts/variables';
+@use 'styles/abstracts/spacing';
+@use 'styles/abstracts/typography';
+
+@use 'styles/base/reset';
+@use 'styles/base/global';
+
+@use 'styles/themes/light';
+@use 'styles/themes/dark';
+
+@use 'styles/layout/layout';
+@use 'styles/layout/sidebar';
+@use 'styles/layout/navbar';
+
+@use 'styles/components/buttons';
+@use 'styles/components/cards';
+
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', sans-serif;
+}

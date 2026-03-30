@@ -1,0 +1,14 @@
+.btn-primary {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #fff;
+    border: 1px solid var(--color-primary);
+    cursor: pointer;
+
+    &:hover {
+        background: none;
+        transition: 0.3s ease;
+    }
+}

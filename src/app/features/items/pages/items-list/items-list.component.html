@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h2>العناصر</h2>
+</div>
+
+<div *ngIf="loading">تحميل...</div>
+
+<table class="table" *ngIf="!loading">
+  <thead>
+    <tr>
+      <th>الاسم</th>
+      <th>التصنيف</th>
+      <th>القسم</th>
+      <th>الكمية</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.name }}</td>
+      <td>{{ item.category }}</td>
+      <td>{{ item.department }}</td>
+      <td>{{ item.quantity }}</td>
+    </tr>
+  </tbody>
+</table>
