@@ -13,9 +13,8 @@ export class ItemService {
   constructor(private api: ApiService) { }
 
   getItmes(): Observable<Item[]>{
-    if (environment.useMock) {
+    if (environment.useMock)
       return of(ITEMS_MOCK).pipe(delay(500));
-    }
 
     return this.api.get<Item[]>('/items')
   }

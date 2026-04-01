@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CATEGORIES_MOCK } from '../../categories.mock';
+import { Category } from '../../categories.model';
+import { CategoriesRoutingModule } from '../../categories-routing.module';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-categories-list',
@@ -11,7 +14,15 @@ import { CATEGORIES_MOCK } from '../../categories.mock';
   ]
 })
 export class CategoriesListComponent implements OnInit {
-  categories = CATEGORIES_MOCK;
+  categories: Category[] = [];
+  loading = true;
 
-  ngOnInit(): void { }
+  constructor(private categoriesService: CategoryService){}
+
+  ngOnInit(): void { 
+    this.categoriesService.getCategories().subscribe(data => {
+      this.categories = data;
+      this.loading = false;
+    })
+  }
 }

@@ -22,7 +22,6 @@ export class ItemsListComponent implements OnInit {
     this.itemService.getItmes().subscribe(data => {
       this.items = data;
       this.loading = false;
-      console.log('items page is loaded')
     })
   }
 }
