@@ -6,7 +6,10 @@ import { ItemService } from '../../services/item.service';
   selector: 'app-items-list',
   standalone: false,
   templateUrl: './items-list.component.html',
-  styleUrl: './items-list.component.scss'
+  styleUrls: [
+    './items-list.component.scss',
+    '../../../../../styles/components/_table.scss'
+  ]
 })
 export class ItemsListComponent implements OnInit {
 

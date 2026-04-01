@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h2>الأقسام</h2>
+</div>
+
+@if(loading) {
+  <div>تحميل...</div>
+}
+
+@else {
+  <div class="table-container">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الوصف</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <tr *ngFor="let d of departments">
+          <td>{{ d.name }}</td>
+          <td>{{ d.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+}

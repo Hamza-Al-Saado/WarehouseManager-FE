@@ -7,10 +7,22 @@
     </div>
 
     <nav class="sidebar__menu">
-      <a routerLink="/items" routerLinkActive="active">المواد</a>
-      <a>التصنيفات</a>
-      <a>الأقسام</a>
-      <a>المستخدمين</a>
+      <a routerLink="/items" routerLinkActive="active">
+        <lucide-icon name="boxes"></lucide-icon>
+        <span>المواد</span>
+      </a>
+      <a routerLink="/categories" routerLinkActive="active">
+        <lucide-icon name="folder"></lucide-icon>
+        <span>التصنيفات</span>
+      </a>
+      <a routerLink="/departments" routerLinkActive="active">
+        <lucide-icon name="building"></lucide-icon>
+        <span>الأقسام</span>
+      </a>
+      <a>
+        <lucide-icon name="users"></lucide-icon>
+        <span>المستخدمون</span>
+      </a>
     </nav>
   </aside>
 
@@ -30,7 +42,7 @@
         ☰
       </button>
 
-      <div class="navbar__title">
+      <div class="navbar__title" routerLink="items" >
         <img class="eagle-img" src="assets/images/Syrian-Eagle.svg" alt="Logo">
         فرع الاتصالات وتكنولوجيا المعلومات
       </div>
