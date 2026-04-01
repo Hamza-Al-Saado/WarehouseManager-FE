@@ -9,6 +9,8 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
 import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { LucideAngularModule, Home, Boxes, Folder, Building, Users } from 'lucide-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,15 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
         prefix: './assets/i18n/',
         suffix: '.json'
       })
+    }),
+
+    // Register only the icons we need to reduce bundle size (Icons Library)
+    LucideAngularModule.pick({
+      Home,
+      Boxes,
+      Folder,
+      Building,
+      Users,
     })
   ],
   providers: [],
