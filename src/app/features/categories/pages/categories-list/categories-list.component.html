@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h2>التصنيفات</h2>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>الاسم</th>
+      <th>التصنيف الأب</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let c of categories">
+      <td>{{ c.name }}</td>
+      <td>{{ c.parent }}</td>
+    </tr>
+  </tbody>
+</table>

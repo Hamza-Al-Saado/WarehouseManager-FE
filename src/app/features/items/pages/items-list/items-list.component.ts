@@ -6,7 +6,10 @@ import { ItemService } from '../../services/item.service';
   selector: 'app-items-list',
   standalone: false,
   templateUrl: './items-list.component.html',
-  styleUrl: './items-list.component.scss'
+  styleUrls: [
+    './items-list.component.scss',
+    '../../../../../styles/components/_table.scss'
+  ]
 })
 export class ItemsListComponent implements OnInit {
 
@@ -19,6 +22,7 @@ export class ItemsListComponent implements OnInit {
     this.itemService.getItmes().subscribe(data => {
       this.items = data;
       this.loading = false;
+      console.log('items page is loaded')
     })
   }
 }

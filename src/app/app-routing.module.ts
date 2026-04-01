@@ -11,8 +11,18 @@ const routes: Routes = [
         path: 'items',
         loadChildren: () =>
           import('./features/items/items.module').then(m => m.ItemsModule)
+      },
+      {
+        path: 'categories',
+        loadChildren: () => 
+          import('./features/categories/categories.module').then(m => m.CategoriesModule)
+      },
+      {
+        path: 'departments',
+        loadChildren: () => 
+          import('./features/departments/departments.module').then(m => m.DepartmentsModule)
       }
-  ]
+    ]
   }
 ];
 
