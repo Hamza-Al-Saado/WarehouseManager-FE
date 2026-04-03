@@ -6,11 +6,8 @@
   </button>
 </div>
 
- <!-- new department modal -->
-<app-modal 
-  [title]="'إضافة قسم'"
-  [isOpen]="isModalOpen"
-  (isClose)="closeModal()">
+<!-- new department modal -->
+<app-modal [title]="isEditMode ? 'تعديل قسم' : 'إضافة قسم'" [isOpen]="isModalOpen" (isClose)="closeModal()">
 
   <form [formGroup]="form" (ngSubmit)="submit()">
 
@@ -32,8 +29,10 @@
 
     <!-- actions -->
     <div class="form-actions">
-      <button type="submit" class="btn-primary" [disabled]="form.invalid">
-        حفظ
+      <button type="submit" class="add-btn" [disabled]="form.invalid || isSubmitting">
+        @if(isEditMode) { {{ isSubmitting ? 'جارٍ التحديث...' : 'تحديث' }} }
+
+        @else { {{ isSubmitting ? 'جارٍ الحفظ...' : 'حفظ' }} }
       </button>
 
       <button type="button" class="btn-secondary" (click)="closeModal()">
@@ -46,29 +45,40 @@
 </app-modal>
 
 @if(loading) {
-  <div>تحميل...</div>
+<div>تحميل...</div>
 }
 
 @else {
-  <div class="table-container">
+<div class="table-container">
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>الاسم</th>
-          <th>الوصف</th>
-          <th>تاريخ الإنشاء</th>
-        </tr>
-      </thead>
-    
-      <tbody>
-        <tr *ngFor="let d of departments">
-          <td>{{ d.departmentName }}</td>
-          <td>{{ d.description }}</td>
-          <td>{{ d.createdAt | date: 'yyyy-MM-dd  ' }}</td>
-        </tr>
-      </tbody>
-    </table>
-    
-  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>الاسم</th>
+        <th>الوصف</th>
+        <th>تاريخ الإنشاء</th>
+        <th>الإجراءات</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (d of departments; track $index) {
+      <tr>
+        <td>{{ d.departmentName }}</td>
+        <td>{{ d.description }}</td>
+        <td>{{ d.createdAt | date: 'yyyy-MM-dd ' }}</td>
+        <td>
+          <button class="btn-secondary" (click)="editDepartment(d)">
+            تعديل
+          </button>
+          <!-- <button class="btn-secondary" (click)="deleteDepartment(d)">
+                حذف
+              </button> -->
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+</div>
 }

@@ -14,8 +14,22 @@ export class DepartmentService {
   constructor(private api: ApiService) { }
 
   getDepartments(): Observable<any> {
-    if (environment.useMock)
-      return of(DEPARTMENTS_MOCK).pipe(delay(500));
+    // if (environment.useMock)
+    //   return of(DEPARTMENTS_MOCK).pipe(delay(500));
     return this.api.get('/Department');
+  }
+
+  createDepartment(payload: { 
+    departmentName: string; 
+    description: string 
+  }) {
+    return this.api.post('/Department', payload);
+  }
+
+  updateDepartment(id: string, payload: {
+    departmentName: string;
+    description: string;
+  }) {
+    return this.api.put(`/Department/${id}`, payload);
   }
 }
