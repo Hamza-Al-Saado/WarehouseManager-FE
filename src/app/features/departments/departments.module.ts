@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { DepartmentsRoutingModule } from './departments-routing.module';
 import { DepartmentsListComponent } from './pages/departments-list/departments-list.component';
+import { ModalComponent } from "../../shared/components/modal/modal.component";
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { DepartmentsListComponent } from './pages/departments-list/departments-l
   ],
   imports: [
     CommonModule,
-    DepartmentsRoutingModule
-  ]
+    DepartmentsRoutingModule,
+    ModalComponent,
+    ReactiveFormsModule
+]
 })
 export class DepartmentsModule { }

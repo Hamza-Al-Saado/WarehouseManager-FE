@@ -14,7 +14,7 @@ import { LucideAngularModule, Home, Boxes, Folder, Building, Users } from 'lucid
 @NgModule({
   declarations: [
     AppComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Department } from '../../depatments.model';
 import { DepartmentService } from '../../services/department.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-departments-list',
@@ -8,19 +9,56 @@ import { DepartmentService } from '../../services/department.service';
   templateUrl: './departments-list.component.html',
   styleUrls: [
     './departments-list.component.scss',
-    '../../../../../styles/components/_table.scss'
+    '../../../../../styles/components/_table.scss',
+    '../../../../../styles/abstracts/_border-radius.scss',
+    '../../../../../styles/components/shared/forms.scss',
   ]
 })
+
 export class DepartmentsListComponent implements OnInit {
   departments: Department[] = [];
   loading = true;
-
-  constructor(private departmentService: DepartmentService){}
-
+  isModalOpen= false;
+  form;
+   constructor(
+    private fb: FormBuilder,
+    private departmentService: DepartmentService
+  ) {
+      this.form = this.fb.group({
+        name: ['', Validators.required],
+        description: ['']
+      });
+  }
+  
   ngOnInit(): void {
-    this.departmentService.getDepartments().subscribe(data => {
-      this.departments = data;
+    this.loadDepartments();
+  }
+  
+  loadDepartments() {
+    this.departmentService.getDepartments().subscribe(res => {
+      this.departments = res.items;
       this.loading = false;
     });
   }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  submit() {
+  if (this.form.invalid) return;
+
+  const payload = {
+    departmentName: this.form.value.name,
+    description: this.form.value.description
+  };
+
+  console.log(payload);
+  this.closeModal();
+  this.form.reset();
+}
 }

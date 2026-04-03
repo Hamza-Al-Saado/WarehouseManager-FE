@@ -1,6 +1,48 @@
 <div class="page-header">
   <h2>الأقسام</h2>
+
+  <button class="add-btn" (click)="openModal()">
+    إضافة قسم
+  </button>
 </div>
+
+<app-modal 
+  [title]="'إضافة قسم'"
+  [isOpen]="isModalOpen"
+  (isClose)="closeModal()">
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- name -->
+    <div class="form-group">
+      <label>اسم القسم</label>
+      <input formControlName="name" />
+
+      <span class="error" *ngIf="form.controls.name.touched && form.controls.name.invalid">
+        هذا الحقل مطلوب
+      </span>
+    </div>
+
+    <!-- description -->
+    <div class="form-group">
+      <label>الوصف</label>
+      <input formControlName="description" />
+    </div>
+
+    <!-- actions -->
+    <div class="form-actions">
+      <button type="submit" class="btn-primary" [disabled]="form.invalid">
+        حفظ
+      </button>
+
+      <button type="button" class="btn-secondary" (click)="closeModal()">
+        إلغاء
+      </button>
+    </div>
+
+  </form>
+
+</app-modal>
 
 @if(loading) {
   <div>تحميل...</div>
@@ -14,13 +56,15 @@
         <tr>
           <th>الاسم</th>
           <th>الوصف</th>
+          <th>تاريخ الإنشاء</th>
         </tr>
       </thead>
     
       <tbody>
         <tr *ngFor="let d of departments">
-          <td>{{ d.name }}</td>
+          <td>{{ d.departmentName }}</td>
           <td>{{ d.description }}</td>
+          <td>{{ d.createdAt | date: 'yyyy-MM-dd  ' }}</td>
         </tr>
       </tbody>
     </table>

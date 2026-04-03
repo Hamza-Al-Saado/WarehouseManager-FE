@@ -1,14 +1,37 @@
 .btn-primary {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    background-color: var(--color-primary);
-    color: #fff;
-    border: 1px solid var(--color-primary);
     cursor: pointer;
+
+    border-radius: 50%;
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-primary);
+    color: #ffffff;
 
     &:hover {
         background: none;
         transition: 0.3s ease;
+    }
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    
+    color: #ffffff;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-small);
+
+    &:hover {
+        background: none;
+        transition: 0.3s ease;
+        color: var(--color-text);
     }
 }

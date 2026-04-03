@@ -30,7 +30,7 @@
 }
 
 .table tr:hover {
-  background: rgba(0,0,0,0.02);
+  background: color-mix(in srgb, var(--color-text) 3%, transparent);
 }
 
 .table tbody {  
