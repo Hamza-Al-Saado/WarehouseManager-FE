@@ -24,6 +24,7 @@ export class DepartmentsListComponent implements OnInit {
     private fb: FormBuilder,
     private departmentService: DepartmentService
   ) {
+      // Initialize the form with validation
       this.form = this.fb.group({
         name: ['', Validators.required],
         description: ['']
@@ -34,6 +35,7 @@ export class DepartmentsListComponent implements OnInit {
     this.loadDepartments();
   }
   
+  // Fetch departments from the service
   loadDepartments() {
     this.departmentService.getDepartments().subscribe(res => {
       this.departments = res.items;
