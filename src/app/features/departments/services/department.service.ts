@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { Department } from '../depatments.model';
+import { Department, PaginatedResponse } from '../depatments.model';
 import { environment } from '../../../../environments/environment';
 import { DEPARTMENTS_MOCK } from '../departments.mock';
 
@@ -13,10 +13,27 @@ export class DepartmentService {
 
   constructor(private api: ApiService) { }
 
-  getDepartments(): Observable<Department[]> {
-    if (environment.useMock)
-      return of(DEPARTMENTS_MOCK).pipe(delay(500));
+  getDepartments(): Observable<any> {
+    // if (environment.useMock)
+    //   return of(DEPARTMENTS_MOCK).pipe(delay(500));
+    return this.api.get('/Department');
+  }
 
-    return this.api.get<Department[]>('/departments');
+  createDepartment(payload: { 
+    departmentName: string; 
+    description: string 
+  }) {
+    return this.api.post('/Department', payload);
+  }
+
+  updateDepartment(id: string, payload: {
+    departmentName: string;
+    description: string;
+  }) {
+    return this.api.put(`/Department/${id}`, payload);
+  }
+
+  deleteDepartment(id: string) {
+    return this.api.delete(`/Department/${id}`);
   }
 }

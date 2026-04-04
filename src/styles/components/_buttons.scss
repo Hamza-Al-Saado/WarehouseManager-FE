@@ -1,14 +1,90 @@
+:root {
+    --btn-width: 30px;
+    --btn-height: 30px;
+    --modal-btn-width: 90px;
+
+    --icon-btn-size: 18px;
+}
+
 .btn-primary {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: var(--color-primary);
-    color: #fff;
-    border: 1px solid var(--color-primary);
+    width: var(--btn-width);
+    height: var(--btn-height);
     cursor: pointer;
+
+    border-radius: 50%;
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-primary);
+    color: #ffffff;
 
     &:hover {
         background: none;
         transition: 0.3s ease;
     }
+}
+
+.btn-secondary {
+    width: var(--modal-btn-width);
+    height: var(--btn-height);
+    cursor: pointer;
+
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--color-secondary);
+    background-color: var(--color-secondary);
+    color: #ffffff;
+
+    &:hover {
+        background: none;
+        transition: 0.3s ease;
+        color: var(--color-text);
+    }
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: var(--modal-btn-width);
+    height: var(--btn-height);
+    cursor: pointer;
+    
+    color: #ffffff;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius-small);
+
+    &:hover {
+        background: none;
+        transition: 0.3s ease;
+        color: var(--color-text);
+    }
+}
+
+.edit-btn,
+.delete-btn {
+  cursor: pointer;
+  width: var(--icon-btn-size);
+  height: var(--icon-btn-size);
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: var(--color-secondary);
+  opacity: 1;
+}
+
+.btn-danger {
+  background: var(--color-secondary);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }

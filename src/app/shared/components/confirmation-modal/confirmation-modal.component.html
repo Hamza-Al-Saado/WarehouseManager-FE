@@ -1,0 +1,27 @@
+@if (isOpen) {
+    <div class="modal-backdrop" (click)="onCancel()"></div>
+}
+
+@if (isOpen) {
+    <div class="modal">
+    
+      <div class="modal__header">
+        <h3>{{ title }}</h3>
+      </div>
+    
+      <div class="modal__body">
+        <p>{{ message }}</p>
+      </div>
+    
+      <div class="modal__actions">
+        <button class="add-btn" (click)="onCancel()">
+          إلغاء
+        </button>
+    
+        <button class="btn-secondary" (click)="onConfirm()">
+          حذف
+        </button>
+      </div>
+    
+    </div>
+}

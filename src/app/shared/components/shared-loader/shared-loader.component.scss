@@ -1,0 +1,71 @@
+.loader {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+.loader__ring {
+    position: relative;
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotate 1.1s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.loader--sm .loader__ring {
+    width: 18px;
+    height: 18px;
+}
+
+.loader--md .loader__ring {
+    width: 26px;
+    height: 26px;
+}
+
+.loader--lg .loader__ring {
+    width: 36px;
+    height: 36px;
+}
+
+.loader__ring:before,
+.loader__ring:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 0;
+    border: 3px solid transparent;
+}
+
+.loader__ring:before {
+    border-top-color: linear-gradient(180deg,
+            var(--color-primary),
+            #00552a);
+    border-right-color: linear-gradient(180deg,
+            var(--color-primary),
+            #00552a);
+    filter: drop-shadow(0 0 6px linear-gradient(180deg,
+                var(--color-primary),
+                #00552a));
+}
+
+.loader__ring:after {
+    border-bottom-color: linear-gradient(180deg,
+            var(--color-primary),
+            #00552a);
+    border-left-color: linear-gradient(180deg,
+            var(--color-primary),
+            #00552a);
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader__text {
+    white-space: nowrap;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}

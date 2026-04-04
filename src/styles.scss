@@ -1,6 +1,7 @@
 @use 'styles/abstracts/variables';
 @use 'styles/abstracts/spacing';
 @use 'styles/abstracts/typography';
+@use 'styles/abstracts/border-radius';
 
 @use 'styles/base/reset';
 @use 'styles/base/global';
@@ -18,5 +19,9 @@
 body {
   direction: rtl;
   text-align: right;
+  font-family: 'Cairo', sans-serif;
+}
+
+button, input, select, textarea {
   font-family: 'Cairo', sans-serif;
 }

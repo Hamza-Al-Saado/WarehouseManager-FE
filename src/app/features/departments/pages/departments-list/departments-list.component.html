@@ -1,29 +1,104 @@
 <div class="page-header">
   <h2>الأقسام</h2>
+
+  <button class="add-btn" (click)="openModal()">
+    إضافة قسم
+  </button>
 </div>
 
 @if(loading) {
-  <div>تحميل...</div>
+<div>تحميل...</div>
 }
 
 @else {
-  <div class="table-container">
+<div class="table-container">
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>الاسم</th>
-          <th>الوصف</th>
-        </tr>
-      </thead>
-    
-      <tbody>
-        <tr *ngFor="let d of departments">
-          <td>{{ d.name }}</td>
-          <td>{{ d.description }}</td>
-        </tr>
-      </tbody>
-    </table>
-    
-  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>الاسم</th>
+        <th>الوصف</th>
+        <th>تاريخ الإنشاء</th>
+        <th>الإجراءات</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (d of departments; track $index) {
+      <tr>
+        <td>{{ d.departmentName }}</td>
+        <td>{{ d.description }}</td>
+        <td>{{ d.createdAt | date: 'yyyy-MM-dd ' }}</td>
+        <td>
+          <div class="actions">
+            <!-- Edit -->
+            <lucide-icon 
+              class="edit-btn" 
+              name="square-pen" 
+              title="تعديل"
+              (click)="editDepartment(d)"
+              ></lucide-icon>
+  
+              <!-- Delete -->
+              <lucide-icon 
+                class="delete-btn" 
+                name="trash" 
+                title="حذف"
+                (click)="openDeleteModal(d)">
+              </lucide-icon>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+</div>
 }
+
+<!-- Create/Edit Modal -->
+<app-modal [title]="isEditMode ? 'تعديل قسم' : 'إضافة قسم'" [isOpen]="isModalOpen" (isClose)="closeModal()">
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- name -->
+    <div class="form-group">
+      <label>اسم القسم</label>
+      <input formControlName="name" />
+
+      <span class="error" *ngIf="form.controls.name.touched && form.controls.name.invalid">
+        هذا الحقل مطلوب
+      </span>
+    </div>
+
+    <!-- description -->
+    <div class="form-group">
+      <label>الوصف</label>
+      <input formControlName="description" />
+    </div>
+
+    <!-- actions -->
+    <div class="form-actions">
+      <button type="submit" class="add-btn" [disabled]="form.invalid || isSubmitting">
+        @if(isEditMode) { {{ isSubmitting ? 'جارٍ التحديث...' : 'تحديث' }} }
+
+        @else { {{ isSubmitting ? 'جارٍ الحفظ...' : 'حفظ' }} }
+      </button>
+
+      <button type="button" class="btn-secondary" (click)="closeModal()">
+        إلغاء
+      </button>
+    </div>
+
+  </form>
+
+</app-modal>
+
+<!-- Delete Confirmation Modal -->
+ <app-confirmation-modal
+  [isOpen]="isDeleteMode"
+  [title]="'حذف قسم'"
+  [message]="'هل تريد حذف ' + departmentToDelete?.departmentName + ' ؟'"
+  (confirm)="confirmDelete()"
+  (cancel)="closeDeleteModal()"
+></app-confirmation-modal>
