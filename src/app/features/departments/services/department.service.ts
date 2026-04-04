@@ -32,4 +32,8 @@ export class DepartmentService {
   }) {
     return this.api.put(`/Department/${id}`, payload);
   }
+
+  deleteDepartment(id: string) {
+    return this.api.delete(`/Department/${id}`);
+  }
 }

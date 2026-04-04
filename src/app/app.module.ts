@@ -9,7 +9,8 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
 import { TranslateModule } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { LucideAngularModule, Home, Boxes, Folder, Building, Users } from 'lucide-angular';
+import { LucideAngularModule, Home, Boxes, Folder, Building, Users, SquarePen } from 'lucide-angular';
+import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LucideAngularModule, Home, Boxes, Folder, Building, Users } from 'lucid
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ConfirmationModalComponent,
 
     TranslateModule.forRoot({
       loader: provideTranslateHttpLoader({
@@ -35,6 +37,7 @@ import { LucideAngularModule, Home, Boxes, Folder, Building, Users } from 'lucid
       Folder,
       Building,
       Users,
+      SquarePen
     })
   ],
   providers: [],

@@ -2,6 +2,8 @@
     --btn-width: 30px;
     --btn-height: 30px;
     --modal-btn-width: 90px;
+
+    --icon-btn-size: 18px;
 }
 
 .btn-primary {
@@ -57,4 +59,32 @@
         transition: 0.3s ease;
         color: var(--color-text);
     }
+}
+
+.edit-btn,
+.delete-btn {
+  cursor: pointer;
+  width: var(--icon-btn-size);
+  height: var(--icon-btn-size);
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: var(--color-secondary);
+  opacity: 1;
+}
+
+.btn-danger {
+  background: var(--color-secondary);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }

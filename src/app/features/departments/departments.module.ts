@@ -6,6 +6,9 @@ import { DepartmentsListComponent } from './pages/departments-list/departments-l
 import { ModalComponent } from "../../shared/components/modal/modal.component";
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { LucideAngularModule, SquarePen, Trash, Trash2 } from 'lucide-angular';
+import { ConfirmationModalComponent } from '../../shared/components/confirmation-modal/confirmation-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     DepartmentsRoutingModule,
     ModalComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmationModalComponent,
+
+    LucideAngularModule.pick({
+          SquarePen,
+          Trash,
+          Trash2
+        })
 ]
 })
 export class DepartmentsModule { }

@@ -6,7 +6,57 @@
   </button>
 </div>
 
-<!-- new department modal -->
+@if(loading) {
+<div>تحميل...</div>
+}
+
+@else {
+<div class="table-container">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>الاسم</th>
+        <th>الوصف</th>
+        <th>تاريخ الإنشاء</th>
+        <th>الإجراءات</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (d of departments; track $index) {
+      <tr>
+        <td>{{ d.departmentName }}</td>
+        <td>{{ d.description }}</td>
+        <td>{{ d.createdAt | date: 'yyyy-MM-dd ' }}</td>
+        <td>
+          <div class="actions">
+            <!-- Edit -->
+            <lucide-icon 
+              class="edit-btn" 
+              name="square-pen" 
+              title="تعديل"
+              (click)="editDepartment(d)"
+              ></lucide-icon>
+  
+              <!-- Delete -->
+              <lucide-icon 
+                class="delete-btn" 
+                name="trash" 
+                title="حذف"
+                (click)="openDeleteModal(d)">
+              </lucide-icon>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+</div>
+}
+
+<!-- Create/Edit Modal -->
 <app-modal [title]="isEditMode ? 'تعديل قسم' : 'إضافة قسم'" [isOpen]="isModalOpen" (isClose)="closeModal()">
 
   <form [formGroup]="form" (ngSubmit)="submit()">
@@ -44,41 +94,11 @@
 
 </app-modal>
 
-@if(loading) {
-<div>تحميل...</div>
-}
-
-@else {
-<div class="table-container">
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>الاسم</th>
-        <th>الوصف</th>
-        <th>تاريخ الإنشاء</th>
-        <th>الإجراءات</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      @for (d of departments; track $index) {
-      <tr>
-        <td>{{ d.departmentName }}</td>
-        <td>{{ d.description }}</td>
-        <td>{{ d.createdAt | date: 'yyyy-MM-dd ' }}</td>
-        <td>
-          <button class="btn-secondary" (click)="editDepartment(d)">
-            تعديل
-          </button>
-          <!-- <button class="btn-secondary" (click)="deleteDepartment(d)">
-                حذف
-              </button> -->
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
-
-</div>
-}
+<!-- Delete Confirmation Modal -->
+ <app-confirmation-modal
+  [isOpen]="isDeleteMode"
+  [title]="'حذف قسم'"
+  [message]="'هل تريد حذف ' + departmentToDelete?.departmentName + ' ؟'"
+  (confirm)="confirmDelete()"
+  (cancel)="closeDeleteModal()"
+></app-confirmation-modal>

@@ -58,3 +58,8 @@
 .table-container::-webkit-scrollbar-thumb:hover {
   background: color-mix(in srgb, var(--color-text) 60%, transparent);
 }
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}

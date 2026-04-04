@@ -17,12 +17,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class DepartmentsListComponent implements OnInit {
   departments: Department[] = [];
   selectedDepartmentId: string | null = null;
+  departmentToDelete: Department | null = null;
   form;
 
   loading = true;
   isModalOpen= false;
   isSubmitting = false;
   isEditMode = false;
+  isDeleteMode = false;
   
   constructor(
     private fb: FormBuilder,
@@ -59,6 +61,7 @@ export class DepartmentsListComponent implements OnInit {
     this.isModalOpen = false;
   }
 
+  // Handle form submission for both create and edit
   submit() {
     if (this.form.invalid) return;
 
@@ -105,6 +108,7 @@ export class DepartmentsListComponent implements OnInit {
     }
   }
 
+  /* Edit */
   editDepartment(dep: Department) {
     this.isEditMode = true;
     this.selectedDepartmentId = dep.departmentId;
@@ -118,8 +122,30 @@ export class DepartmentsListComponent implements OnInit {
     this.isModalOpen = true;
   }
 
-  deleteDepartment(_t40: Department) {
-    throw new Error('Method not implemented.');
+
+  /* Delete */
+  openDeleteModal(dep: Department) {
+    this.departmentToDelete = dep;
+    this.isDeleteMode = true;
+  }
+
+  closeDeleteModal() {
+    this.isDeleteMode = false;
+    this.departmentToDelete = null;
+  }
+
+  confirmDelete() {
+    if (!this.departmentToDelete) return;
+
+    this.departmentService.deleteDepartment(this.departmentToDelete.departmentId).subscribe({
+      next: ()=> {
+        this.departments = this.departments.filter(
+          d => d.departmentId !== this.departmentToDelete!.departmentId
+        );
+
+        this.closeDeleteModal();
+      }
+    })
   }
 
   afterSave() {
