@@ -9,11 +9,13 @@ import { LoaderComponent } from '../../shared/components/shared-loader/shared-lo
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { DropDownListComponent } from '../../shared/components/drop-down-list/drop-down-list.component';
 import { ConfirmationModalComponent } from "../../shared/components/confirmation-modal/confirmation-modal.component";
+import { RoleListComponent } from './roles/role-list/role-List.component';
 
 @NgModule({
     declarations: [
         UserListComponent,
-        UserFormComponent
+        UserFormComponent,
+        RoleListComponent,
     ],
     imports: [
         CommonModule, AdminRoutingModule, FormsModule,

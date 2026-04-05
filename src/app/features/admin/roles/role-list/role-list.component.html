@@ -1,0 +1,57 @@
+<div class="page-header">
+    <h2>الأدوار</h2>
+
+    <button class="add-btn" (click)="modeStatus['add'] = true">
+        إضافة دور
+    </button>
+</div>
+
+@if(loading) {
+<div class="loader">
+    <app-shared-loader [show]="loading" [text]="'جاري التحميل...'"></app-shared-loader>
+</div>
+}
+@else {
+<div class="table-container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>اسم الدور</th>
+                <th>الوصف</th>
+                <th>عدد المستخدمين</th>
+                <th>تاريخ الإنشاء</th>
+                <th>الحالة</th>
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (role of roles?.items; track role.roleId) {
+            <tr>
+                <td>{{ role.roleName }}</td>
+                <td>{{ role.description || '—' }}</td>
+                <td>{{ role.usersCount || 0 }}</td>
+                <td>{{ role.createdAt | date: 'yyyy-MM-dd' }}</td>
+                <td>
+                    {{ role.isDeleted ? 'محذوف' : 'نشط' }}
+                </td>
+
+                <td>
+                    <div class="actions">
+
+                        <lucide-icon class="edit-btn" name="square-pen" title="تعديل">
+                        </lucide-icon>
+
+                        <lucide-icon class="delete-btn" name="trash" title="حذف">
+                        </lucide-icon>
+
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+}
