@@ -1,16 +1,16 @@
 @if (isOpen) {
-    <div class="modal-backdrop" (click)="onClose()"></div>
-    
-    <div class="modal">
-    
-      <div class="modal__header">
-        <h3>{{ title }}</h3>
-        <button (click)="onClose()">✕</button>
-      </div>
-    
-      <div class="modal__body">
-        <ng-content></ng-content>
-      </div>
-    
-    </div>
+<div class="modal-backdrop" (click)="onClose()"></div>
+
+<div class="modal">
+
+  <div class="modal__header">
+    <h3>{{ title }}</h3>
+    <button (click)="onClose()">✕</button>
+  </div>
+
+  <div class="modal__body">
+    <ng-content ></ng-content>
+  </div>
+
+</div>
 }

@@ -1,8 +1,9 @@
 .login-container {
-    height: 100vh;
+    min-height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 
     background: linear-gradient(270deg,
             #0b3d2e,
@@ -10,7 +11,6 @@
             #14532d,
             #0f3d2e);
     background-size: 400% 400%;
-
     animation: gradientMove 18s ease-in-out infinite;
 }
 
@@ -29,34 +29,42 @@
 }
 
 .login-card {
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 20px;
-    max-width: 400px;
+    background: var(--color-bg);
+    padding: 30px;
+    border-radius: 18px;
     width: 100%;
+    max-width: 400px;
+
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     text-align: center;
     color: #222;
 }
 
-/* LOGO */
-.logo img {
-    width: 80px;
-    margin-bottom: 15px;
-}
-
-/* TITLE */
-h2 {
-    color: #0b6b3a;
-    margin-bottom: 5px;
-}
-
-.subtitle {
-    color: #666;
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
     margin-bottom: 20px;
 }
 
-/* FORM */
+.logo img {
+    width: 70px;
+}
+
+h2 {
+    color: var(--color-primary);
+    margin: 0;
+    font-size: 22px;
+}
+
+.subtitle {
+    color: var(--color-text);
+    opacity: 0.7;
+    margin: 0;
+    font-size: 14px;
+}
+
 .form-group {
     text-align: right;
     margin-bottom: 15px;
@@ -64,12 +72,13 @@ h2 {
 
 .form-group label {
     font-size: 13px;
-    color: #444;
+    color: var(--color-text);
+    opacity: 0.7;
 }
 
 .form-group input {
     width: 100%;
-    padding: 10px;
+    padding: 11px;
     border-radius: 10px;
     border: 1px solid #ccc;
     background: #f9f9f9;
@@ -78,15 +87,14 @@ h2 {
 }
 
 .form-group input:focus {
-    border-color: #0b6b3a;
+    border-color: var(--color-primary);
     background: #fff;
     outline: none;
 }
 
-/* LOGIN BUTTON */
 .login-btn {
     width: 100%;
-    padding: 10px;
+    padding: 11px;
     background: linear-gradient(45deg, #0b6b3a, #1f8a55);
     border: none;
     color: #fff;
@@ -94,31 +102,16 @@ h2 {
     margin-top: 10px;
     cursor: pointer;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .login-btn:hover {
     opacity: 0.9;
 }
 
-/* LINKS */
-.actions {
-    text-align: center;
-}
-
-.register {
-    margin-top: 15px;
-}
-
-.link-btn {
-    background: none;
-    border: none;
-    color: #0b6b3a;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.link-btn:hover {
-    text-decoration: underline;
+.login-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .error {
@@ -127,50 +120,46 @@ h2 {
 }
 
 .error small {
-    color: #e53935;
+    color: #d32f2f;
     font-size: 12px;
 }
 
 @media (max-width: 576px) {
 
+    .login-container {
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
     .login-card {
-        width: 90%;
-        padding: 25px;
-        border-radius: 15px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    .subtitle {
-        font-size: 13px;
-    }
-
-    .form-group input {
-        padding: 8px;
-    }
-
-    .login-btn {
-        padding: 9px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 14px;
     }
 
     .logo img {
-        width: 60px;
+        width: 55px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .form-group input {
+        padding: 10px;
+    }
+
+    .login-btn {
+        padding: 10px;
     }
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
-
     .login-card {
-        width: 70%;
-    }
-}
-
-@media (min-width: 1200px) {
-
-    .login-card {
-        width: 400px;
-        padding: 40px;
+        max-width: 90%;
     }
 }

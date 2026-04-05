@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 import { RoleGuard } from './core/guards/role.guard';
- 
+
 const routes: Routes = [
 
   {
@@ -30,6 +30,12 @@ const routes: Routes = [
         path: 'departments',
         loadChildren: () =>
           import('./features/departments/departments.module').then(m => m.DepartmentsModule),
+        canActivate: [RoleGuard],
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./features/admin/admin.module').then(m => m.AdminModule),
         canActivate: [RoleGuard],
       },
     ]

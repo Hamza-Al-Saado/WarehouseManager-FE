@@ -13,6 +13,8 @@ import { LucideAngularModule, Home, Boxes, Folder, Building, Users, SquarePen } 
 import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { AuthModule } from './features/auth/auth.module';
+import { LoaderComponent } from './shared/components/shared-loader/shared-loader.component';
+import { DropDownListComponent } from './shared/components/drop-down-list/drop-down-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { AuthModule } from './features/auth/auth.module';
     AppRoutingModule,
     HttpClientModule,
     ConfirmationModalComponent,
+    LoaderComponent,
+    DropDownListComponent,
 
     TranslateModule.forRoot({
       loader: provideTranslateHttpLoader({

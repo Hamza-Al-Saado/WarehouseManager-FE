@@ -1,4 +1,4 @@
-<span class="loader" *ngIf="show" [ngClass]="'loader--' + size">
+<div *ngIf="show" class="loader" [ngClass]="'loader--' + size">
     <span class="loader__ring"></span>
     <span class="loader__text" *ngIf="text">{{ text }}</span>
-</span>
+</div>

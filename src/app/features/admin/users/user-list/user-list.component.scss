@@ -1,0 +1,16 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-5);
+
+  h2 {
+    margin: 0;
+    font-size: var(--text-xl);
+    font-weight: bold;
+  }
+
+  .add-btn {
+    width: 120px;
+  }
+}

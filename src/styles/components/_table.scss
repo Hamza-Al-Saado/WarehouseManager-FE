@@ -2,7 +2,7 @@
   max-height: 68vh;
   overflow: auto;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--border-radius-medium);
 }
 
 .table {
@@ -33,7 +33,7 @@
   background: color-mix(in srgb, var(--color-text) 3%, transparent);
 }
 
-.table tbody {  
+.table tbody {
   max-height: 90vh;
   overflow-y: scroll;
 }
@@ -51,7 +51,7 @@
 
 .table-container::-webkit-scrollbar-thumb {
   background: color-mix(in srgb, var(--color-text) 40%, transparent);
-  border-radius: 8px;
+  border-radius: var(--border-radius-medium);
   cursor: pointer;
 }
 
@@ -62,4 +62,11 @@
 .actions {
   display: flex;
   gap: var(--space-2);
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
 }
