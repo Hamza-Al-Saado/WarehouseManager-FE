@@ -6,13 +6,7 @@
     color: #4b5563;
 }
 
-.loader__ring {
-    position: relative;
-    border-radius: 50%;
-    display: inline-block;
-    animation: rotate 1.1s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
+/* الأحجام */
 .loader--sm .loader__ring {
     width: 18px;
     height: 18px;
@@ -28,44 +22,38 @@
     height: 36px;
 }
 
-.loader__ring:before,
-.loader__ring:after {
-    content: "";
-    position: absolute;
+/* الحلقة الأساسية */
+.loader__ring {
     border-radius: 50%;
-    inset: 0;
-    border: 3px solid transparent;
+    display: inline-block;
+
+    /* 🔥 Gradient حقيقي */
+    background: conic-gradient(var(--color-primary),
+            #00552a,
+            transparent 70%);
+
+    animation: rotate 1s linear infinite;
+
+    /* 🔥 يجعلها حلقة وليس دائرة ممتلئة */
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 0);
 }
 
-.loader__ring:before {
-    border-top-color: linear-gradient(180deg,
-            var(--color-primary),
-            #00552a);
-    border-right-color: linear-gradient(180deg,
-            var(--color-primary),
-            #00552a);
-    filter: drop-shadow(0 0 6px linear-gradient(180deg,
-                var(--color-primary),
-                #00552a));
+/* النص */
+.loader__text {
+    white-space: nowrap;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
-.loader__ring:after {
-    border-bottom-color: linear-gradient(180deg,
-            var(--color-primary),
-            #00552a);
-    border-left-color: linear-gradient(180deg,
-            var(--color-primary),
-            #00552a);
-}
-
+/* الحركة */
 @keyframes rotate {
     to {
         transform: rotate(360deg);
     }
 }
 
-.loader__text {
-    white-space: nowrap;
-    font-weight: 500;
-    letter-spacing: 0.3px;
+/* اللون الأساسي */
+:root {
+    --color-primary: #00a86b;
+    /* غيره حسب ثيم مشروعك */
 }

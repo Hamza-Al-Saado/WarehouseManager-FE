@@ -1,0 +1,85 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- full name -->
+    <div class="form-group">
+        <label>الاسم الكامل</label>
+        <input formControlName="fullName" placeholder="أدخل الاسم الكامل" />
+
+        <span class="error" *ngIf="form.controls.fullName.touched && form.controls.fullName.invalid">
+            هذا الحقل مطلوب
+        </span>
+    </div>
+    @if(!isEditMode) {
+
+    <!-- email -->
+    <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <input formControlName="email" placeholder="أدخل البريد الإلكتروني" type="email" />
+
+        <span class="error" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+            بريد إلكتروني غير صالح
+        </span>
+    </div>
+
+    <!-- phone -->
+    <div class="form-group">
+        <label>رقم الهاتف</label>
+        <input formControlName="phone" placeholder="أدخل رقم الهاتف" />
+
+        <span class="error" *ngIf="form.controls.phone.touched && form.controls.phone.invalid">
+            هذا الحقل مطلوب
+        </span>
+    </div>
+
+    <!-- password -->
+    <div class="form-group">
+        <label>كلمة المرور</label>
+        <input formControlName="password" type="password" placeholder="أدخل كلمة المرور" />
+
+        <span class="error" *ngIf="form.controls.password.touched && form.controls.password.invalid">
+            كلمة المرور مطلوبة (6 أحرف على الأقل)
+        </span>
+    </div>
+    }
+
+    <!-- role -->
+    <div class="form-group">
+        <app-drop-down-list [title]="'الدور'" [items]="roles" [showSearch]="false" [height]="'48px'"
+            [selectedItem]="selectedItem['role']!" (itemSelected)="onSelectItem($event,true)">
+        </app-drop-down-list>
+
+        <span class="error" *ngIf="form.controls.roleId.touched && form.controls.roleId.invalid">
+            هذا الحقل مطلوب
+        </span>
+    </div>
+
+    <!-- status -->
+    <div class="form-group">
+        <app-drop-down-list [title]="'الحالة'" [items]="status" [showSearch]="false" [height]="'48px'"
+            [selectedItem]="selectedItem['status']" (itemSelected)="onSelectItem($event,false)">
+        </app-drop-down-list>
+
+        <span class="error" *ngIf="form.controls.status.touched && form.controls.status.invalid">
+            هذا الحقل مطلوب
+        </span>
+    </div>
+
+    <!-- actions -->
+    <div class="form-actions">
+        <button type="submit" class="add-btn" [disabled]="form.invalid || isSubmitting">
+
+            @if(isEditMode) {
+            {{ isSubmitting ? 'جارٍ التحديث...' : 'تحديث' }}
+            }
+            @else {
+            {{ isSubmitting ? 'جارٍ الحفظ...' : 'حفظ' }}
+            }
+
+        </button>
+
+        <button type="button" class="btn-secondary" (click)="onClose()">
+            إلغاء
+        </button>
+    </div>
+
+</form>

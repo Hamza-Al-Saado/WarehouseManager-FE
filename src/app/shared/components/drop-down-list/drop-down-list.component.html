@@ -1,0 +1,50 @@
+<div class="custom-select-container" #container>
+    <label *ngIf="showTitle" class="select-label">{{ title }}</label>
+
+    <div class="select-box" #selectBox (click)="toggleDropdown()"
+        [ngClass]="{ open: isOpen, highlight: highlightClass === 'highlight'}"
+        [ngStyle]="{'height': height ? height : '48px'}">
+        <span class="selected-text" [ngStyle]="{'font-size': fontSizeText ? fontSizeText : '16px'}"
+            [class.placeholder]="!selectedItem.name">
+            {{ isMultiSelect
+            ? (selectedItems.length ? selectedItems.length + ' عناصر مختارة' : 'اختر ' + title)
+            : (selectedItem.name || ('اختر ' + title))
+            }}
+        </span>
+        <!-- <span class="arrow" [class.open]="isOpen">
+            <span class="arrow">
+                {{ isOpen ? '▲' : '▼' }}
+            </span>
+        </span> -->
+    </div>
+
+    <div #dropdown class="dropdown" *ngIf="isOpen">
+        <!-- Search -->
+        <div class="search-wrapper" *ngIf="showSearch" (click)="$event.stopPropagation()">
+            <input type="search" [placeholder]="searchPlaceholder || 'البحث'" [(ngModel)]="itemsSearch"
+                (keyup)="filterItems()" (click)="$event.stopPropagation()" class="search-input" autofocus />
+
+            <button class="add-owner-btn" *ngIf="items?.length && showButtonToAddNewItem && role=='100'"
+                (click)="addPropertyOwners(); $event.stopPropagation()" type="button">
+                {{buttonText}}
+            </button>
+        </div>
+
+        <!-- Options -->
+        <div class="dropdown-option" *ngFor="let item of items" (click)="selectItem(item, isMultiSelect)"
+            [class.active]="isSelected(item)">
+            <input type="checkbox" *ngIf="isMultiSelect" [checked]="isSelected(item)"
+                (click)="selectItem(item, true); $event.stopPropagation()" />
+            <span>{{ item.name || item.fullName }}</span>
+        </div>
+
+        <!-- No results -->
+        <div class="no-results-container" *ngIf="items && items.length === 0">
+            <p class="no-results-text">لا توجد نتائج مطابقة</p>
+            <button class="add-owner-btn" *ngIf="showButtonToAddNewItem && role=='100'"
+                (click)="addPropertyOwners(); $event.stopPropagation()" type="button">
+                + إضافة مالك جديد
+            </button>
+        </div>
+    </div>
+</div>

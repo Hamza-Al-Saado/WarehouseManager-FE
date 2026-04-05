@@ -1,0 +1,72 @@
+<div class="page-header">
+    <h2>المستخدمون</h2>
+
+    <button class="add-btn" (click)="modeStatus['add'] = true">
+        إضافة مستخدم
+    </button>
+</div>
+
+@if(loading) {
+<div class="loader">
+    <app-shared-loader [show]="loading" [text]="'جاري التحميل...'"></app-shared-loader>
+</div>
+}
+@else {
+<div class="table-container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>الاسم</th>
+                <th>البريد الإلكتروني</th>
+                <th>رقم الهاتف</th>
+                <th>الدور</th>
+                <th>الحالة</th>
+                <th>تاريخ الإنشاء</th>
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (user of users?.items; track user.userId) {
+            <tr>
+                <td>{{ user.fullName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.roleName || '—' }}</td>
+                <td>{{ user.status }}</td>
+                <td>{{ user.createdAt | date: 'yyyy-MM-dd' }}</td>
+
+                <td>
+                    <div class="actions">
+
+                        <lucide-icon class="edit-btn" name="square-pen" title="تعديل" (click)="changeMode(false, user)">
+                        </lucide-icon>
+
+                        <lucide-icon class="delete-btn" name="trash" title="حذف" (click)="deleteUser(user)">
+                        </lucide-icon>
+
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+
+<app-modal [title]="'إضافة مستخدم'" [isOpen]="modeStatus['add']" (isClose)="changeMode(true)">
+    <app-user-form [isEditMode]="false" [isSubmitting]="false" (save)="createNewUser($event)"
+        (close)="changeMode(true)">
+    </app-user-form>
+</app-modal>
+
+<app-modal [title]="'تعديل مستخدم'" [isOpen]="modeStatus['edit']" (isClose)="changeMode(false)">
+    <app-user-form [isEditMode]="true" [isSubmitting]="false" [user]="item['edit']" (save)="updateUser($event)"
+        (close)="changeMode(false)">
+    </app-user-form>
+</app-modal>
+
+<app-confirmation-modal [isOpen]="modeStatus['delete']" [title]="'حذف مستخدم'"
+    [message]="'هل تريد حذف ' + item['delete']?.fullName + ' ؟'" (confirm)="confirmDelete()"
+    (cancel)="closeDeleteModal()"></app-confirmation-modal>
