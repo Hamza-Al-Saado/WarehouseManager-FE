@@ -29,7 +29,7 @@
 }
 
 .login-card {
-    background: #ffffff;
+    background: var(--color-bg);
     padding: 35px;
     border-radius: 20px;
     max-width: 400px;
@@ -47,12 +47,13 @@
 
 /* TITLE */
 h2 {
-    color: #0b6b3a;
+    color: var(--color-primary);
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: #666;
+    color: var(--color-text);
+    opacity: 0.7;
     margin-bottom: 20px;
 }
 
@@ -64,7 +65,8 @@ h2 {
 
 .form-group label {
     font-size: 13px;
-    color: #444;
+    color: var(--color-text);
+    opacity: 0.7;
 }
 
 .form-group input {
@@ -78,7 +80,7 @@ h2 {
 }
 
 .form-group input:focus {
-    border-color: #0b6b3a;
+    border-color: var(--color-primary);
     background: #fff;
     outline: none;
 }
@@ -112,7 +114,7 @@ h2 {
 .link-btn {
     background: none;
     border: none;
-    color: #0b6b3a;
+    color: var(--color-primary);
     cursor: pointer;
     font-weight: 500;
 }
@@ -127,7 +129,7 @@ h2 {
 }
 
 .error small {
-    color: #e53935;
+    color: var(--color-secondary);
     font-size: 12px;
 }
 
