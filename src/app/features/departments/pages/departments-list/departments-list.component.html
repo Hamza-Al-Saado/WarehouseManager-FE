@@ -1,9 +1,18 @@
 <div class="page-header">
   <h2>الأقسام</h2>
 
-  <button class="add-btn" (click)="openModal()">
-    إضافة قسم
-  </button>
+  <div class="header-actions">
+    <input 
+      type="text"
+      placeholder="بحث..."
+      [(ngModel)]="searchTerm"
+      (input)="applyFilter()"
+      >
+
+    <button class="add-btn action-btn" (click)="openModal()">
+      إضافة قسم
+    </button>
+  </div>
 </div>
 
 @if(loading) {

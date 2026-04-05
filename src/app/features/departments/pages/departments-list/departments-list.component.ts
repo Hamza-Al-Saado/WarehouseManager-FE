@@ -10,7 +10,8 @@ import { FormBuilder, Validators } from '@angular/forms';
     './departments-list.component.scss',
     '../../../../../styles/components/_table.scss',
     '../../../../../styles/abstracts/_border-radius.scss',
-    '../../../../../styles/components/shared/forms.scss',
+    '../../../../../styles/components/forms.scss',
+    '../../../../../styles/components/_search-filter.scss'
   ]
 })
 
@@ -18,6 +19,9 @@ export class DepartmentsListComponent implements OnInit {
   departments: Department[] = [];
   selectedDepartmentId: string | null = null;
   departmentToDelete: Department | null = null;
+
+  allDepartments: Department[] = [];
+  searchTerm: string = '';
   form;
 
   loading = true;
@@ -44,21 +48,17 @@ export class DepartmentsListComponent implements OnInit {
   // Fetch departments from the service
   loadDepartments() {
     this.departmentService.getDepartments().subscribe(res => {
+      this.allDepartments = res.items;
       this.departments = res.items;
       this.loading = false;
     });
   }
 
-  openModal() {
-    this.isEditMode = false;
-    this.selectedDepartmentId = null;
-    
-    this.form.reset(); // Reset the form when opening the modal
-    this.isModalOpen = true;
-  }
-
-  closeModal() {
-    this.isModalOpen = false;
+  applyFilter() {
+    const term = this.searchTerm.toLowerCase();
+    this.departments = this.allDepartments.filter (dep =>
+      dep.departmentName.toLowerCase().includes(term)
+    );
   }
 
   // Handle form submission for both create and edit
@@ -122,7 +122,6 @@ export class DepartmentsListComponent implements OnInit {
     this.isModalOpen = true;
   }
 
-
   /* Delete */
   openDeleteModal(dep: Department) {
     this.departmentToDelete = dep;
@@ -132,6 +131,19 @@ export class DepartmentsListComponent implements OnInit {
   closeDeleteModal() {
     this.isDeleteMode = false;
     this.departmentToDelete = null;
+  }
+
+  
+  openModal() {
+    this.isEditMode = false;
+    this.selectedDepartmentId = null;
+    
+    this.form.reset(); // Reset the form when opening the modal
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
   confirmDelete() {

@@ -1,9 +1,10 @@
 :root {
     --btn-width: 30px;
-    --btn-height: 30px;
+    --btn-height: 35px;
     --modal-btn-width: 90px;
 
     --icon-btn-size: 18px;
+    --action-btn-height: 40px;
 }
 
 .btn-primary {
@@ -39,7 +40,7 @@
     }
 }
 
-.add-btn {
+.add-btn, .action-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +60,11 @@
         transition: 0.3s ease;
         color: var(--color-text);
     }
+}
+
+.action-btn {
+    height: var(--action-btn-height);
+    border-radius: var(--border-radius-medium);
 }
 
 .edit-btn,
